@@ -7,10 +7,14 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-flask = "^3.0.3"
 python-barcode = "^0.15.1"
 pillow = "^10.4.0"
+websockets = "^13.0.1"
+asyncio = "^3.4.3"
 
+[tool.poetry.scripts]
+poetry = 'poetry.console:run'
+app = 'noodle_ticket_generator.app:main'
 
 [build-system]
 requires = ["poetry-core"]

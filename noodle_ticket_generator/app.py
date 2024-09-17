@@ -1,8 +1,10 @@
-from flask import Flask, request, Response
+import asyncio
+import websockets
 
-app = Flask(__name__)
+async def echo(websocket, path):
+    async for message in websocket:
+        await websocket.send(message)
 
-@app.route('/webhook', methods=['POST'])
-def respond():
-    print(request.json)
-    return Response(status=200)
+start_server = websockets.serve(echo, "localhost", 8765)
+asyncio.get_event_loop().run_until_complete(start_server)
+asyncio.get_event_loop().run_forever()
